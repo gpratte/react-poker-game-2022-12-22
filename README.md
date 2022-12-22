@@ -2,7 +2,9 @@
 
 First thing to note is using node version v18.12.1 and npm version 8.19.2.
 
-Also, using react 18.
+Running _npx create-react-app --version_ spit out 5.0.1.
+
+_create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
 ## step 01 create development environment
 To get started did the following.
