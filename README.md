@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# React poker game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+First thing to note is using node version v18.12.1 and npm version 8.19.2.
 
-## Available Scripts
+## step 01 create development environment
+To get started did the following.
 
-In the project directory, you can run:
+From https://reactjs.org/docs/create-a-new-react-app.html#create-react-app
+* _npx create-react-app react-poker-game-2022-12-22_
+* _cd react-poker-game-2022-12-22_
 
-### `npm start`
+Removed the .git directory
+* _rm -rf .git_
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Created github repository react-poker-game-2022-12-22
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Hook up the react-poker-game-2022-12-22 with the github repository
+* _git init_
+* _git add ._
+* _git commit -m "initial commit"_
+* _git remote add origin git@github.com:gpratte/react-poker-game-2022-12-22.git_
+* _git push origin master_
 
-### `npm test`
+Make sure the initial react application works. Should see the default react page in the web browser at http://localhost:3000/
+* _npm start_
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Edit the README.md with these notes and push changes to master.
+* _git add ._
+* _git commit -m "update readme"_
+* _git push origin master_
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Create the first branch
+* _git checkout -b step-01-create-development-environment_
+* _git push origin step-01-create-development-environment_
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
