@@ -2,6 +2,8 @@
 
 First thing to note is using node version v18.12.1 and npm version 8.19.2.
 
+Also, using react 18.
+
 ## step 01 create development environment
 To get started did the following.
 
