@@ -6,6 +6,32 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
+## step 02 game header bar
+Added bootstrap, lodash and fontawesome dependencies
+* _npm install --save react-bootstrap bootstrap_
+* _npm install --save lodash_
+* _npm install --save @fortawesome/fontawesome-free_
+
+Downloaded the free the Font Awesome 6.2.1 css and webfonts
+* https://use.fontawesome.com/releases/v6.2.1/fontawesome-free-6.2.1-web.zip
+
+Copied the file from fontawesome-free-6.2.1-web/css to public/fontawesome/css 
+and from fontawesome-free-6.2.1-web/webfonts to public/fontawesome/webfonts.
+
+Added links to the header in index.html
+
+    <head>
+      <link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+      <link href="/fontawesome/css/brands.css" rel="stylesheet">
+      <link href="/fontawesome/css/solid.css" rel="stylesheet">
+    </head>
+
+Also imported the bootstrap css
+
+    import 'bootstrap/dist/css/bootstrap.min.css';
+
+Removed unwanted files and coded the beginning of the Game component with a navigation header.
+
 ## step 01 create development environment
 To get started did the following.
 
