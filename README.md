@@ -6,6 +6,9 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
+## step 03 error notification toast
+Use a bootstrap Toast for error notifications. Also show notification bell and count in nav bar.
+
 ## step 02 game header bar
 Added bootstrap, lodash and fontawesome dependencies
 * _npm install --save react-bootstrap bootstrap_
