@@ -6,6 +6,9 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
+## step 05 custom hook use notifications
+Moved all the state management out of Game.jsx and into a custom hook in useNotifications.js
+
 ## step 04 notifications offcanvas
 Bring up a list of all notifications by clicking on the bell in the nav bar.
 
