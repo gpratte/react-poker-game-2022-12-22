@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import League from './league/components/League'
+import React from "react";
+import League from "./league/components/League";
 
 function App() {
   return (
