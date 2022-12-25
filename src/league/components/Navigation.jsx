@@ -2,13 +2,16 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import {Badge, Nav, NavDropdown} from "react-bootstrap";
 import React from "react";
+import {Link} from "react-router-dom";
 
 function Navigation(props) {
   return (
     <Navbar expand="lg" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="#home" className="text">
-          <i className="nav-home fa-solid fa-house"></i>
+          <Link to="/home">
+            <i className="nav-home fa-solid fa-house"></i>
+          </Link>
         </Navbar.Brand>
         <Navbar.Collapse className="justify-content-end">
           <Nav>
