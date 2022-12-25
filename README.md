@@ -6,6 +6,11 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
+## step 04 notifications offcanvas
+Bring up a list of all notifications by clicking on the bell in the nav bar.
+
+Delete all notifications or one at a time.
+
 ## step 03 error notification toast
 Use a bootstrap Toast for error notifications. Also show notification bell and count in nav bar.
 
