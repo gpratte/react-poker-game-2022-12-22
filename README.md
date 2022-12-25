@@ -6,8 +6,12 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
-## step 07
-npm i --save react-router-dom@5.1.2
+## step 07 routing
+Added the react routing dependency.
+* _npm i --save react-router-dom@5.1.2_
+
+The League component has all the common components (top nav bar, footer, ...) and 
+the routing will swap different components into the main part of the page.
 
 ## step 06 league component
 Created the top level league component (in reality just moved everything that was developed for Game 
