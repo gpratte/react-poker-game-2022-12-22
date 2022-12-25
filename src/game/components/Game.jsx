@@ -1,10 +1,11 @@
 import './game.css';
+import useNotifications from '../hooks/useNotifications'
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {Badge, Button, ListGroup, Nav, NavDropdown, Offcanvas, Toast} from "react-bootstrap";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {isEmpty} from 'lodash';
 
 function TopNavBar(props) {
@@ -28,16 +29,16 @@ function TopNavBar(props) {
               </NavDropdown.Item>
             </NavDropdown>
             <Navbar.Text>
-              {props.notificationCount === 0 &&
+              {props.notifications.length === 0 &&
                 <>
                   <i className="nav-home fa-solid fa-bell-slash"></i>
                 </>
               }
-              {props.notificationCount > 0 &&
+              {props.notifications.length > 0 &&
                 <>
                   <span style={{cursor: "pointer"}} onClick={() => props.showNotifications()}>
                     <i className="nav-home fa-solid fa-bell"></i>
-                    <Badge bg={"warning"}>{props.notificationCount}</Badge>
+                    <Badge bg={"warning"}>{props.notifications.length}</Badge>
                   </span>
                 </>
               }
@@ -99,56 +100,19 @@ function Notifications(props) {
 }
 
 function Game() {
-  // state for showing/hiding the toast
-  const [notification, setNotification] = useState({});
-  const [notifications, setNotifications] = useState([]);
-  const [notificationCount, setNotificationCount] = useState(0)
-  const [showNotifications, setShowNotifications] = useState(false);
-
-  const deleteNotification = (id) => {
-    const newNotifications = notifications.filter(notification => notification.id !== id)
-    setNotification({});
-    setNotifications(newNotifications);
-    setNotificationCount(newNotifications.length);
-  }
-
-  const deleteAllNotifications = () => {
-    setNotification({});
-    setNotifications([]);
-    setNotificationCount(0);
-  }
-
-  const showNotificationsPanel = () => {
-    setNotification({});
-    setShowNotifications(true);
-  }
-  const hideNotificationsPanel = () => {
-    setShowNotifications(false);
-  }
-
-  // toggle the toast
-  useEffect(() => {
-    let interval = setInterval(() => {
-      const notify = {
-        id: Math.random(),
-        type: 'Error',
-        message: 'uh oh ' + Date.now()
-      }
-      const newNotifications = [...notifications];
-      newNotifications.push(notify);
-      setNotifications(newNotifications)
-      setNotificationCount(newNotifications.length);
-      if (!showNotifications) {
-        setNotification(notify);
-      }
-    }, 2500);
-    return () => clearInterval(interval);
-  })
-
+  const {
+    notification,
+    notifications,
+    showNotifications,
+    deleteNotification,
+    deleteAllNotifications,
+    showNotificationsPanel,
+    hideNotificationsPanel
+  } = useNotifications(5000);
 
   return (
     <>
-      <TopNavBar notificationCount={notificationCount} showNotifications={showNotificationsPanel}/>
+      <TopNavBar notifications={notifications} showNotifications={showNotificationsPanel}/>
       <Container className="main-view">
         <Row className="justify-content-center text-center">
           <Col>
