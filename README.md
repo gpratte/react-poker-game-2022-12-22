@@ -6,6 +6,10 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
+## step 09 react context
+Introduced a react context ``AddNotificationContext`` in the League that is accessed in 
+the Game custom hook to avoid prop drilling (passing props to descendants).
+
 ## step 08 game details
 Load the game when navigating to the game from the home page. Show the details of the game.
 
