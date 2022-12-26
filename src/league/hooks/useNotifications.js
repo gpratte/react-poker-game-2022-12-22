@@ -24,6 +24,13 @@ function useNotifications(delay = 2500) {
     }
   }
 
+  const closeNotification = (id) => {
+    const notificationToClose = notifications.map((notification) => notification.id === id);
+    if (notificationToClose) {
+      setNotification({});
+    }
+  }
+
   const deleteAllNotifications = () => {
     setNotification({});
     setNotifications([]);
@@ -55,6 +62,7 @@ function useNotifications(delay = 2500) {
     notification,
     notifications,
     showNotifications,
+    closeNotification,
     deleteNotification,
     deleteAllNotifications,
     showNotificationsPanel,

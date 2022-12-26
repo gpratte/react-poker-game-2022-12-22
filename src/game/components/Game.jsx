@@ -3,12 +3,12 @@ import Details from "./Details";
 import useGame from "../hooks/useGame";
 import {Spinner} from "react-bootstrap";
 
-function Game(props) {
+function Game() {
 
   const {
     game,
     isLoading
-  } = useGame(props.newNotification);
+  } = useGame();
 
   if (isLoading) {
     return (

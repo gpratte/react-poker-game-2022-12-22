@@ -1,10 +1,11 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import zeroPlayersData from '../data/zero-players.js'
+import {AddNotificationContext} from "../../league/components/League";
 
-function useGame(newNotification) {
+function useGame() {
   const [game, setGame] = useState({})
   const [isLoading, setIsLoading] = useState(true);
-
+  const {newNotification} = useContext(AddNotificationContext);
   const getGame = async (id) => {
     await delay(3000);
     const notify = {
