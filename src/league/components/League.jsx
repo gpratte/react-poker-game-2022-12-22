@@ -14,6 +14,7 @@ import Home from "../../home/components/Home";
 
 function League() {
   const {
+    newNotification,
     notification,
     notifications,
     showNotifications,
@@ -48,7 +49,7 @@ function League() {
               <Home/>
             </Route>
             <Route exact path='/current-game'>
-              <Game/>
+              <Game newNotification={newNotification}/>
             </Route>
           </Col>
         </Row>

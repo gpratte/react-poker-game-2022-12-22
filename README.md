@@ -6,6 +6,16 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
+## step 08 game details
+Load the game when navigating to the game from the home page. Show the details of the game.
+
+Added the moment timezone dependency
+* _npm install --save moment-timezone_
+
+Shows a spinner while waiting for the game data.
+
+If there is an error it is shown in notification framework.
+
 ## step 07 routing
 Added the react routing dependency.
 * _npm i --save react-router-dom@5.1.2_
