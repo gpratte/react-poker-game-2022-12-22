@@ -5,10 +5,23 @@ function useNotifications(delay = 2500) {
   const [notifications, setNotifications] = useState([]);
   const [showNotifications, setShowNotifications] = useState(false);
 
+  const newNotification = (notify) => {
+    const newNotifications = [...notifications];
+    newNotifications.push(notify);
+    setNotifications(newNotifications)
+    if (!showNotifications) {
+      setNotification(notify);
+      // Auto close after x seconds
+    }
+  }
+
   const deleteNotification = (id) => {
-    const newNotifications = notifications.filter(notification => notification.id !== id)
-    setNotification({});
-    setNotifications(newNotifications);
+    const notificationToDelete = notifications.map((notification) => notification.id === id);
+    if (notificationToDelete) {
+      const newNotifications = notifications.filter(notification => notification.id !== id)
+      setNotification({});
+      setNotifications(newNotifications);
+    }
   }
 
   const deleteAllNotifications = () => {
@@ -30,19 +43,15 @@ function useNotifications(delay = 2500) {
       const notify = {
         id: Math.random(),
         type: 'Error',
-        message: 'uh oh ' + Date.now()
+        message: 'uh oh tick' + Date.now()
       }
-      const newNotifications = [...notifications];
-      newNotifications.push(notify);
-      setNotifications(newNotifications)
-      if (!showNotifications) {
-        setNotification(notify);
-      }
+      newNotification(notify);
     }, delay);
     return () => clearInterval(interval);
   })
 
   return {
+    newNotification,
     notification,
     notifications,
     showNotifications,

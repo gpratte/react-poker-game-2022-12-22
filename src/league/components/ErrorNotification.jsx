@@ -4,7 +4,10 @@ import React from "react";
 
 function ErrorNotification(props) {
   return (
-    <Toast show={!isEmpty(props.notification)} onClose={() => props.deleteNotification(props.notification.id)}>
+    <Toast show={!isEmpty(props.notification)}
+           autohide={true}
+           delay={10000}
+           onClose={() => props.deleteNotification(props.notification.id)}>
       <Toast.Header>
         <strong className="me-auto">{props.notification.type}</strong>
       </Toast.Header>
