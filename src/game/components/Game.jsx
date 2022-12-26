@@ -1,7 +1,8 @@
 import React from "react";
 import Details from "./Details";
 import useGame from "../hooks/useGame";
-import {Spinner} from "react-bootstrap";
+import {Accordion, Spinner} from "react-bootstrap";
+import '../style/game.css'
 
 function Game() {
 
@@ -22,7 +23,16 @@ function Game() {
 
   return (
     <div>
-      <Details game={game}/>
+      <Accordion defaultActiveKey="0" flush>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>
+            Details
+          </Accordion.Header>
+          <Accordion.Body>
+            <Details game={game}/>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
     </div>
   )
 }

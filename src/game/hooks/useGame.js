@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from "react";
-import zeroPlayersData from '../data/zero-players.js'
+import eightPlayersData from "../data/eight-players";
 import {AddNotificationContext} from "../../league/components/League";
 
 function useGame() {
@@ -15,7 +15,7 @@ function useGame() {
     }
     newNotification(notify);
     await delay(3000);
-    setGame(zeroPlayersData);
+    setGame(eightPlayersData);
   }
 
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

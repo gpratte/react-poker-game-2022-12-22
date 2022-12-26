@@ -34,7 +34,10 @@ function Details(props) {
 
   const gameDate = date ? moment(date).tz('America/Chicago').format('MM/DD') : 'Unknown'
   hostName = hostName ? hostName : 'Unknown';
-  const tocPlusKitty = totalCombinedTocCalculated && kittyCalculated ? totalCombinedTocCalculated + kittyCalculated : 0
+  let tocPlusKitty = 0;
+  if (totalCombinedTocCalculated || kittyCalculated) {
+    tocPlusKitty = totalCombinedTocCalculated + kittyCalculated;
+  }
   totalCollected = totalCollected ? totalCollected : 0;
   prizePotCalculated = prizePotCalculated ? prizePotCalculated : 0;
   payouts = payouts ? payouts : [];
