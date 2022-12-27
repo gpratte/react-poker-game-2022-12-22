@@ -12,6 +12,7 @@ function GamePlayers() {
   const isChop = false;
   const numPaidPlayers = game.numPaidPlayers;
 
+  // TODO should the processing of the players be moved to a context or a util file?
   const renderGamePlayers = (gamePlayers, isChop) => {
     if (!gamePlayers) {
       return;
