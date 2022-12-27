@@ -4,10 +4,11 @@ import _ from "lodash";
 import leaguePlayersData from "../../clients/league-players-data";
 import seasonData from "../../clients/season-data";
 import {GameContext} from "./Game";
+import gameClient from "../../clients/gameClient";
 
 function AddPlayer(props) {
 
-  const {game} = useContext(GameContext);
+  const {game, refreshGame, showAddPlayer, setShowAddPlayer} = useContext(GameContext);
 
   const gamePlayers = game.players;
   const players = leaguePlayersData;
@@ -16,11 +17,34 @@ function AddPlayer(props) {
   // Sort season players by name
   seasonPlayers.sort((sp1, sp2) => sp1.name.localeCompare(sp2.name));
 
-  const [tab, setTab] = useState('league-player');
+  const [activeTabKey, setActiveTabKey] = useState('league-player');
 
-  const addPlayer = (e) => {
-    console.log('call game client to add a player')
+  const addPlayer = async (e) => {
     e.preventDefault();
+    if (activeTabKey === 'league-player') {
+      if (e.target.elements.playerId.value === '0') {
+        alert("Select a player");
+        return;
+      }
+      setShowAddPlayer(false);
+      gameClient.addPlayer(e.target.elements.playerId.value,
+        e.target.elements.buyInId.checked,
+        e.target.elements.tocId.checked,
+        e.target.elements.qtocId.checked);
+    } else {
+      if (!e.target.elements.firstNameId.value && !e.target.elements.lastNameId.value) {
+        alert("Enter a name");
+        return;
+      }
+      setShowAddPlayer(false);
+      gameClient.addPlayer(e.target.elements.firstNameId.value,
+        e.target.elements.lastNameId.value,
+        e.target.elements.emailId.value,
+        e.target.elements.buyInId.checked,
+        e.target.elements.tocId.checked,
+        e.target.elements.qtocId.checked);
+    }
+    refreshGame();
   }
 
   const renderPlayers = (players, seasonPlayers, gamePlayers) => {
@@ -97,14 +121,14 @@ function AddPlayer(props) {
 
   return (
     <div>
-      <Modal show={props.showAddPlayer}
+      <Modal show={showAddPlayer}
              backdrop={'static'}
-             onHide={() => props.setShowAddPlayer(false)}>
+             onHide={() => setShowAddPlayer(false)}>
         <Modal.Body>
           <Form onSubmit={addPlayer}>
             <Tabs className="style1"
-                  defaultActiveKey="league-player"
-                  onSelect={key => setTab(key)}
+                  defaultActiveKey={activeTabKey}
+                  onSelect={key => setActiveTabKey(key)}
                   id="uncontrolled-tab-example">
               <Tab className="style2" eventKey="league-player" title="League Player&nbsp;&nbsp;&nbsp;&nbsp;">
                 <Form.Group>
@@ -121,9 +145,8 @@ function AddPlayer(props) {
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" id={'emailId'}/>
+                  <Form.Control type="email" placeholder="Needed to login" id={'emailId'}/>
                   <Form.Text className="text-muted">
-                    Needed to login
                   </Form.Text>
                 </Form.Group>
               </Tab>
@@ -145,7 +168,7 @@ function AddPlayer(props) {
                         label={'Quarterly TOC'}
             />
             <Modal.Footer>
-              <Button variant="secondary" onClick={() => props.setShowAddPlayer(false)}>
+              <Button variant="secondary" onClick={() => setShowAddPlayer(false)}>
                 Cancel
               </Button>
               <Button variant="primary" type="submit">

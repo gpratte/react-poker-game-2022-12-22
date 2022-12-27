@@ -1,12 +1,11 @@
 import {Button, Table} from "react-bootstrap";
 import AddPlayer from "./AddPlayer";
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {GameContext} from "./Game";
 
 function GamePlayers() {
 
-  const [showAddPlayer, setShowAddPlayer] = useState(false);
-  const {game} = useContext(GameContext);
+  const {game, showAddPlayer, setShowAddPlayer} = useContext(GameContext);
 
   const gamePlayers = game.players;
   //const isChop = this.isThereChop(gamePlayers);

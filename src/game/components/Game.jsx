@@ -11,10 +11,12 @@ function Game() {
 
   const {
     game,
+    refreshGame,
     isLoading
   } = useGame();
 
   const [detailsAccordionOpen, setDetailsAccordionOpen] = useState(true)
+  const [showAddPlayer, setShowAddPlayer] = useState(false);
 
   if (isLoading) {
     return (
@@ -27,7 +29,7 @@ function Game() {
   }
 
   return (
-    <GameContext.Provider value={{game}}>
+    <GameContext.Provider value={{game, refreshGame, showAddPlayer, setShowAddPlayer}}>
       <div>
         <Accordion defaultActiveKey="0" flush>
           <Accordion.Item eventKey="0">
