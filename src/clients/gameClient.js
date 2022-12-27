@@ -36,7 +36,6 @@ const gameClient = {
         message: 'uh oh could not add player' + Date.now()
       };
     }
-    console.log('added player')
     return {...player};
   }
 }

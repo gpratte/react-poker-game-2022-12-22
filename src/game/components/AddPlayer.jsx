@@ -1,57 +1,31 @@
-import {Button, Form, Modal, Tab, Tabs} from "react-bootstrap";
-import {useContext, useState} from "react";
+import {Button, Form, Modal, Spinner, Tab, Tabs} from "react-bootstrap";
+import {useContext} from "react";
 import _ from "lodash";
-import leaguePlayersData from "../../clients/league-players-data";
-import seasonData from "../../clients/season-data";
 import {GameContext} from "./Game";
-import gameClient from "../../clients/gameClient";
+import useAddPlayer from "../hooks/useAddPlayer";
 
-function AddPlayer(props) {
+function AddPlayer() {
 
-  const {game, refreshGame, showAddPlayer, setShowAddPlayer} = useContext(GameContext);
-
+  const {game, showAddPlayer, setShowAddPlayer} = useContext(GameContext);
+  const {
+    addGamePlayer,
+    leaguePlayers,
+    seasonPlayers,
+    activeTabKey,
+    setActiveTabKey,
+    isLoading
+  } = useAddPlayer();
   const gamePlayers = game.players;
-  const players = leaguePlayersData;
-  const seasonPlayers = seasonData.players;
 
-  // Sort season players by name
-  seasonPlayers.sort((sp1, sp2) => sp1.name.localeCompare(sp2.name));
+  // TODO should the processing of the players be moved to a context or a util file?
+  const renderPlayers = (leaguePlayers, seasonPlayers, gamePlayers) => {
+    // Sort season players by name
+    seasonPlayers.sort((sp1, sp2) => sp1.name.localeCompare(sp2.name));
 
-  const [activeTabKey, setActiveTabKey] = useState('league-player');
-
-  const addPlayer = async (e) => {
-    e.preventDefault();
-    if (activeTabKey === 'league-player') {
-      if (e.target.elements.playerId.value === '0') {
-        alert("Select a player");
-        return;
-      }
-      setShowAddPlayer(false);
-      gameClient.addPlayer(e.target.elements.playerId.value,
-        e.target.elements.buyInId.checked,
-        e.target.elements.tocId.checked,
-        e.target.elements.qtocId.checked);
-    } else {
-      if (!e.target.elements.firstNameId.value && !e.target.elements.lastNameId.value) {
-        alert("Enter a name");
-        return;
-      }
-      setShowAddPlayer(false);
-      gameClient.addPlayer(e.target.elements.firstNameId.value,
-        e.target.elements.lastNameId.value,
-        e.target.elements.emailId.value,
-        e.target.elements.buyInId.checked,
-        e.target.elements.tocId.checked,
-        e.target.elements.qtocId.checked);
-    }
-    refreshGame();
-  }
-
-  const renderPlayers = (players, seasonPlayers, gamePlayers) => {
     // Remove players already in game
-    const playersFiltered = _.filter(players,
+    const playersFiltered = _.filter(leaguePlayers,
       (p) => {
-        let index = _.findIndex(gamePlayers, function(gp) {
+        let index = _.findIndex(gamePlayers, function (gp) {
           return gp.playerId === p.id;
         });
         // return true if not found (i.e. the player is not
@@ -65,7 +39,7 @@ function AddPlayer(props) {
       // Remove season players already in game
       seasonPlayersFiltered = _.filter(seasonPlayers,
         (sp) => {
-          let index = _.findIndex(gamePlayers, function(gp) {
+          let index = _.findIndex(gamePlayers, function (gp) {
             return gp.playerId === sp.playerId;
           });
           // return true if not found (i.e. the player is not
@@ -80,7 +54,7 @@ function AddPlayer(props) {
     // Remove players in that are in the season
     const playersFiltered2 = _.filter(playersFiltered,
       (p) => {
-        let index = _.findIndex(seasonPlayersFiltered, function(sp) {
+        let index = _.findIndex(seasonPlayersFiltered, function (sp) {
           return sp.playerId === p.id;
         });
         // return true if not found (i.e. the player is not
@@ -119,13 +93,23 @@ function AddPlayer(props) {
     })
   }
 
+  if (isLoading) {
+    return (
+      <div>
+        <Spinner animation="border">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>
+    )
+  }
+
   return (
     <div>
       <Modal show={showAddPlayer}
              backdrop={'static'}
              onHide={() => setShowAddPlayer(false)}>
         <Modal.Body>
-          <Form onSubmit={addPlayer}>
+          <Form onSubmit={addGamePlayer}>
             <Tabs className="style1"
                   defaultActiveKey={activeTabKey}
                   onSelect={key => setActiveTabKey(key)}
@@ -133,7 +117,7 @@ function AddPlayer(props) {
               <Tab className="style2" eventKey="league-player" title="League Player&nbsp;&nbsp;&nbsp;&nbsp;">
                 <Form.Group>
                   <Form.Control as="select" id="playerId">
-                    {renderPlayers(players, seasonPlayers, gamePlayers)}
+                    {renderPlayers(leaguePlayers, seasonPlayers, gamePlayers)}
                   </Form.Control>
                 </Form.Group>
               </Tab>
