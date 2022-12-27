@@ -8,6 +8,7 @@ function useGame() {
   const {newNotification} = useContext(AddNotificationContext);
 
   useEffect(() => {
+    console.log('useGame.useEffect')
     async function init() {
       try {
         const gameData = await getGame(game.id);

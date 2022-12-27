@@ -1,4 +1,4 @@
-const eightPlayersData = {
+const gameData = {
   "id": 85,
   "hostId": 23,
   "date": "2022-12-29",
@@ -278,4 +278,4 @@ const eightPlayersData = {
   "qseasonId": 11
 }
 
-export default eightPlayersData;
+export default gameData;

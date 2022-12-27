@@ -1,7 +1,6 @@
 import {delay, getRandomInt} from "../utils/util";
-import gameData from "./game-data";
-
-export const getGame = async (id = 0) => {
+import leaguePlayersData from "./league-players-data";
+export const getPlayers = async (id = 0) => {
   // delay 1 to 3 seconds
   await delay(getRandomInt(1000, 3000));
   // One in four will error
@@ -9,8 +8,8 @@ export const getGame = async (id = 0) => {
     throw {
       id: Math.random(),
       type: 'Error',
-      message: 'uh oh could not get game' + Date.now()
+      message: 'uh oh could not get players' + Date.now()
     };
   }
-  return gameData;
+  return leaguePlayersData;
 }

@@ -3,6 +3,7 @@ import Details from "./Details";
 import useGame from "../hooks/useGame";
 import {Accordion, Spinner} from "react-bootstrap";
 import '../style/game.css'
+import GamePlayers from "./GamePlayers";
 
 function Game() {
 
@@ -35,6 +36,7 @@ function Game() {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
+      <GamePlayers game={game}/>
     </div>
   )
 }
