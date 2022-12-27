@@ -1,8 +1,12 @@
 import {Button, Table} from "react-bootstrap";
+import AddPlayer from "./AddPlayer";
+import {useContext, useState} from "react";
+import {GameContext} from "./Game";
 
-function GamePlayers(props) {
+function GamePlayers() {
 
-  const game = props.game;
+  const [showAddPlayer, setShowAddPlayer] = useState(false);
+  const {game} = useContext(GameContext);
 
   const gamePlayers = game.players;
   //const isChop = this.isThereChop(gamePlayers);
@@ -86,10 +90,14 @@ function GamePlayers(props) {
         </tbody>
       </Table>
 
-      {/*<AddPlayer game={game} players={players} seasonPlayers={seasonPlayers}/>*/}
-      {/*<EditGamePlayer game={game}/>*/}
+      <AddPlayer showAddPlayer={showAddPlayer} setShowAddPlayer={setShowAddPlayer} />
 
-      {/*{this.renderAddPlayerButtons(isGameOver)}*/}
+      <div>
+        <Button variant="primary" onClick={() => setShowAddPlayer(true)}>
+          Add Player
+        </Button>
+      </div>
+
     </div>
   )
 }

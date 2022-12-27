@@ -1,4 +1,4 @@
-const seasonData = [
+const seasonData =
   {
     "id": 3,
     "start": "2022-05-01",
@@ -243,6 +243,6 @@ const seasonData = [
       }
     ]
   }
-]
+
 
 export default seasonData;
