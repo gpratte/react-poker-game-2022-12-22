@@ -6,6 +6,14 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
+## step 10 show game players
+Now have a gameClient that mock out an api call and return canned game data with eight players.
+
+The Game now shows the GamePlayers in a table. 
+
+Also have a playerClient and seasonClient that mock out an api call and return canned data. Will 
+need this when adding a new game player.
+
 ## step 09 react context
 Introduced a react context ``AddNotificationContext`` in the League that is accessed in 
 the Game custom hook to avoid prop drilling (passing props to descendants).
