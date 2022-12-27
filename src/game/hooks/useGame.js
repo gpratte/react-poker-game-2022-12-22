@@ -1,32 +1,23 @@
 import {useContext, useEffect, useState} from "react";
-import eightPlayersData from "../data/eight-players";
 import {AddNotificationContext} from "../../league/components/League";
+import {getGame} from "../../clients/gameClient";
 
 function useGame() {
   const [game, setGame] = useState({})
   const [isLoading, setIsLoading] = useState(true);
   const {newNotification} = useContext(AddNotificationContext);
-  const getGame = async (id) => {
-    await delay(3000);
-    const notify = {
-      id: Math.random(),
-      type: 'Error',
-      message: 'uh oh could not get game' + Date.now()
-    }
-    newNotification(notify);
-    await delay(3000);
-    setGame(eightPlayersData);
-  }
-
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   useEffect(() => {
-    async function delayFunc() {
-      await delay(3000);
-      setIsLoading(false);
-      getGame();
+    async function init() {
+      try {
+        const gameData = await getGame(game.id);
+        setIsLoading(false);
+        setGame(gameData);
+      } catch (error) {
+        newNotification(error);
+      }
     }
-    delayFunc();
+    init();
   }, [])
 
   return {
