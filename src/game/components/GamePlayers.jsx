@@ -1,14 +1,18 @@
 import {Button, Table} from "react-bootstrap";
+import AddPlayer from "./AddPlayer";
+import {useContext} from "react";
+import {GameContext} from "./Game";
 
-function GamePlayers(props) {
+function GamePlayers() {
 
-  const game = props.game;
+  const {game, showAddPlayer, setShowAddPlayer} = useContext(GameContext);
 
   const gamePlayers = game.players;
   //const isChop = this.isThereChop(gamePlayers);
   const isChop = false;
   const numPaidPlayers = game.numPaidPlayers;
 
+  // TODO should the processing of the players be moved to a context or a util file?
   const renderGamePlayers = (gamePlayers, isChop) => {
     if (!gamePlayers) {
       return;
@@ -86,10 +90,14 @@ function GamePlayers(props) {
         </tbody>
       </Table>
 
-      {/*<AddPlayer game={game} players={players} seasonPlayers={seasonPlayers}/>*/}
-      {/*<EditGamePlayer game={game}/>*/}
+      <AddPlayer showAddPlayer={showAddPlayer} setShowAddPlayer={setShowAddPlayer} />
 
-      {/*{this.renderAddPlayerButtons(isGameOver)}*/}
+      <div>
+        <Button variant="primary" onClick={() => setShowAddPlayer(true)}>
+          Add Player
+        </Button>
+      </div>
+
     </div>
   )
 }
