@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Details from "./Details";
 import useGame from "../hooks/useGame";
 import {Accordion, Spinner} from "react-bootstrap";
@@ -10,6 +10,8 @@ function Game() {
     game,
     isLoading
   } = useGame();
+
+  const [open, setOpen] = useState(true)
 
   if (isLoading) {
     return (
@@ -25,9 +27,9 @@ function Game() {
     <div>
       <Accordion defaultActiveKey="0" flush>
         <Accordion.Item eventKey="0">
-          <Accordion.Header>
-            Details
-          </Accordion.Header>
+          <Accordion.Button onClick={() => setOpen(!open)}>
+            Details {open && <i className="fa-solid fa-chevron-up"></i>}{!open && <i className="fa-solid fa-chevron-down"></i>}
+          </Accordion.Button>
           <Accordion.Body>
             <Details game={game}/>
           </Accordion.Body>
