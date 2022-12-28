@@ -8,6 +8,7 @@ function useGame() {
   const {newNotification} = useContext(AddNotificationContext);
 
   const refreshGame = async () => {
+    console.log('refresh game')
     try {
       const gameData = await gameClient.getGame(game.id);
       gameData.numPaidPlayers = Math.random();

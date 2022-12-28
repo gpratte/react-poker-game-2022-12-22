@@ -1,8 +1,8 @@
 import React, {createContext, useState} from "react";
 import Details from "./Details";
 import useGame from "../hooks/useGame";
+import '../../common/style/common.css'
 import {Accordion, Spinner} from "react-bootstrap";
-import '../style/game.css'
 import GamePlayers from "./GamePlayers";
 
 export const GameContext = createContext();
