@@ -2,6 +2,7 @@ import {Button, Table} from "react-bootstrap";
 import AddPlayer from "./AddPlayer";
 import {useContext} from "react";
 import {GameContext} from "./Game";
+import EditPlayer from "./EditPlayer";
 
 function GamePlayers() {
 
@@ -19,10 +20,9 @@ function GamePlayers() {
     }
     return gamePlayers.map((gamePlayer, index) => {
       const {
-        id, name, boughtIn, rebought, annualTocParticipant,
+        id, boughtIn, rebought, annualTocParticipant,
         quarterlyTocParticipant, chop, tocPoints, tocChopPoints,
-        qtocPoints, qtocChopPoints, place, roundUpdates
-      } = gamePlayer;
+        qtocPoints, qtocChopPoints, place} = gamePlayer;
       let originalPoints;
       let points;
       if (tocChopPoints) {
@@ -40,11 +40,7 @@ function GamePlayers() {
         <tr key={id}>
           <td>{place ? (place < 11 ? place : '') : ''}</td>
           <td>
-            <Button variant="link">
-              {roundUpdates ? <i className="fa-solid fa-bell"></i> : ''}
-              {roundUpdates ? ' ' : ''}
-              {name ? name : 'unknown'}
-            </Button>
+            <EditPlayer key={Math.random()} gamePlayer={gamePlayer} gamePlayers={gamePlayers}/>
           </td>
           <td>{boughtIn ? String.fromCharCode(10004) : ''}</td>
           <td>{rebought ? String.fromCharCode(10004) : ''}</td>

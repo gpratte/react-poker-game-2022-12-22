@@ -15,7 +15,6 @@ function useAddPlayer() {
   const {newNotification} = useContext(AddNotificationContext);
 
   useEffect(() => {
-    console.log('useAddPlayer.useEffect entered')
     setIsLoading(false);
     async function init() {
       try {
@@ -42,10 +41,11 @@ function useAddPlayer() {
       }
       setShowAddPlayer(false);
       try {
-        await gameClient.addPlayer(e.target.elements.playerId.value,
-          e.target.elements.buyInId.checked,
-          e.target.elements.tocId.checked,
-          e.target.elements.qtocId.checked);
+        await gameClient.addPlayer(game.id, {
+          id: e.target.elements.playerId.value,
+          buyin: e.target.elements.buyInId.checked,
+          annualToc: e.target.elements.tocId.checked,
+          qToc: e.target.elements.qtocId.checked});
       } catch (error) {
         newNotification(error);
       }
