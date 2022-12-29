@@ -18,6 +18,7 @@ function GamePlayers() {
     if (!gamePlayers) {
       return;
     }
+
     return gamePlayers.map((gamePlayer, index) => {
       const {
         id, boughtIn, rebought, annualTocParticipant,
@@ -40,7 +41,7 @@ function GamePlayers() {
         <tr key={id}>
           <td>{place ? (place < 11 ? place : '') : ''}</td>
           <td>
-            <EditPlayer key={Math.random()} gamePlayer={gamePlayer} gamePlayers={gamePlayers}/>
+            <EditPlayer key={gamePlayer.id} gamePlayer={gamePlayer} gamePlayers={gamePlayers}/>
           </td>
           <td>{boughtIn ? String.fromCharCode(10004) : ''}</td>
           <td>{rebought ? String.fromCharCode(10004) : ''}</td>

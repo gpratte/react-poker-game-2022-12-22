@@ -7,17 +7,6 @@ function useGame() {
   const [isLoading, setIsLoading] = useState(true);
   const {newNotification} = useContext(AddNotificationContext);
 
-  const refreshGame = async () => {
-    console.log('refresh game')
-    try {
-      const gameData = await gameClient.getGame(game.id);
-      gameData.numPaidPlayers = Math.random();
-      setGame(gameData);
-    } catch (error) {
-      newNotification(error);
-    }
-  }
-
   useEffect(() => {
     console.log('useGame.useEffect entered')
     async function init() {
@@ -32,6 +21,17 @@ function useGame() {
     }
     init();
   }, [])
+
+  const refreshGame = async () => {
+    console.log('refresh game')
+    try {
+      const gameData = await gameClient.getGame(game.id);
+      gameData.numPaidPlayers = Math.random();
+      setGame(gameData);
+    } catch (error) {
+      newNotification(error);
+    }
+  }
 
   return {
     game,
