@@ -6,6 +6,15 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
+## step 13 edit player context
+Move the EditPlayer state (and the functions that manipulate the state) 
+into the useEditPlayer context hook.
+
+Fixed the key for the EditPlayer component in the list so that it 
+did not rerender when nothing changed.
+
+Removed the <React.StrictMode> tag because it was causing duplicate logging.
+
 ## step 12 edit player
 Show an edit player accordion panel. Allow to cancel, delete or update the game player.
 

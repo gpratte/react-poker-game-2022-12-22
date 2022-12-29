@@ -2,24 +2,24 @@ import {Accordion, Button, Form} from "react-bootstrap";
 import '../../common/style/common.css'
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import {useRef, useState} from "react";
+import {useRef} from "react";
 import Container from "react-bootstrap/Container";
 import useEditPlayer from "../hooks/useEditPlayer";
 function EditPlayer(props) {
 
-  const [open, setOpen] = useState(false);
-  const [accordionBodyKey, setAccordionBodyKey] = useState(Math.random());
-
-  const [buyInChecked, setBuyInChecked] = useState(!!props.gamePlayer.boughtIn);
-  const [rebuyChecked, setrebuyChecked] = useState(!!props.gamePlayer.rebought);
-  const [annualTocChecked, setAnnualTocChecked] = useState(!!props.gamePlayer.annualTocParticipant);
-  const [qTocChecked, setQTocChecked] = useState(!!props.gamePlayer.quarterlyTocParticipant);
-  const [alertChecked, setAlertChecked] = useState(!!props.gamePlayer.roundUpdates);
-  const [place, setPlace] = useState(props.gamePlayer.place);
-  const [chop, setChop] = useState(props.gamePlayer.chop);
-
   const accordionRef = useRef(null);
-  const {deleteGamePlayer, updateGamePlayer} = useEditPlayer();
+  const {accordionOpen, setAccordionOpen,
+    accordionBodyKey, setAccordionBodyKey,
+    buyInChecked, setBuyInChecked,
+    rebuyChecked, setRebuyChecked,
+    annualTocChecked, setAnnualTocChecked,
+    qTocChecked, setQTocChecked,
+    alertChecked, setAlertChecked,
+    place, setPlace,
+    chop, setChop,
+    deleteGamePlayer,
+    updateGamePlayer,
+    resetToOriginalState} = useEditPlayer(props.gamePlayer);
 
   const renderPlaces = (gamePlayer, gamePlayers) => {
     // Build an array of the places taken
@@ -42,9 +42,8 @@ function EditPlayer(props) {
     }
 
     return placesLeft.map((place) => {
-      const selected = gamePlayer.place === place;
       return (
-        <option key={place} value={place} selected={selected}>{place}</option>
+        <option key={place} label={place} value={place}>{place}</option>
       )
     })
   }
@@ -53,18 +52,10 @@ function EditPlayer(props) {
     <Accordion flush>
       <Accordion.Item eventKey="0">
         <Accordion.Button ref={accordionRef} onClick={() => {
-          const wasOpen = open;
-          setOpen(!open);
+          const wasOpen = accordionOpen;
+          setAccordionOpen(!accordionOpen);
           if (wasOpen) {
-            // Reset state to original in case the user cancelled
-            setBuyInChecked(!!props.gamePlayer.boughtIn);
-            setrebuyChecked(!!props.gamePlayer.rebought);
-            setAnnualTocChecked(!!props.gamePlayer.annualTocParticipant);
-            setQTocChecked(!!props.gamePlayer.quarterlyTocParticipant);
-            setAlertChecked(!!props.gamePlayer.roundUpdates);
-            setPlace(props.gamePlayer.place);
-            setChop(props.gamePlayer.chop);
-
+            resetToOriginalState(props.gamePlayer);
             // Change the key and the body component will refresh
             setAccordionBodyKey(Math.random())
           }
@@ -83,7 +74,7 @@ function EditPlayer(props) {
                           defaultChecked={buyInChecked}
               />
               <Form.Check inline
-                          onClick={() => setrebuyChecked(!rebuyChecked)}
+                          onClick={() => setRebuyChecked(!rebuyChecked)}
                           type={'checkbox'}
                           id={'rebuyId'}
                           label={'Rebuy'}
@@ -121,9 +112,10 @@ function EditPlayer(props) {
                 <Form.Control style={{textAlign: "center"}}
                               onChange={(e) => setPlace(e.target.value)}
                               as="select"
+                              defaultValue={props.gamePlayer.place ? props.gamePlayer.place : 11}
                               id="placeId">
                   <option key={11} value={11}>---</option>
-                  {open && renderPlaces(props.gamePlayer, props.gamePlayers)}
+                  {renderPlaces(props.gamePlayer, props.gamePlayers)}
                 </Form.Control>
               </Col>
             </Form.Group>
