@@ -5,7 +5,8 @@ import Row from "react-bootstrap/Row";
 import {useRef} from "react";
 import Container from "react-bootstrap/Container";
 import useEditPlayer from "../hooks/useEditPlayer";
-function EditPlayer(props) {
+import ErrorBoundary from "../../common/components/ErrorBoundry";
+function EditPlayerNoBoundry(props) {
 
   const accordionRef = useRef(null);
   const {accordionOpen, setAccordionOpen,
@@ -173,6 +174,14 @@ function EditPlayer(props) {
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
+  )
+}
+
+function EditPlayer(props) {
+  return (
+    <ErrorBoundary customUI={<div>Something is amiss <i className="fa-solid fa-triangle-exclamation"></i></div>}>
+      <EditPlayerNoBoundry {...props} ></EditPlayerNoBoundry>
+    </ErrorBoundary>
   )
 }
 
