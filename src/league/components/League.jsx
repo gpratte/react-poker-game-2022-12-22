@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import React, {createContext} from "react";
-import {Route} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import Navigation from "./Navigation";
 import ErrorNotification from "./ErrorNotification";
 import Notifications from "./Notifications";
@@ -47,15 +47,11 @@ function League() {
           </Row>
           <Row className="justify-content-center text-center">
             <Col>
-              <Route exact path='/'>
-                <Home/>
-              </Route>
-              <Route exact path='/home'>
-                <Home/>
-              </Route>
-              <Route exact path='/current-game'>
-                <Game />
-              </Route>
+              <Routes>
+                <Route path="*" element={<Home />} />
+                <Route path="/home/*" element={<Home />} />
+                <Route path="/current-game" element={<Game />} />
+              </Routes>
             </Col>
           </Row>
           <Row className="justify-content-center text-center">

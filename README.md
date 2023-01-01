@@ -6,6 +6,9 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
+## step 15 upgrade router version 6
+Upgraded the react router from version 5.x to 6.x.
+
 ## step 14 error boundry
 Use the React provided error boundry (https://reactjs.org/docs/error-boundaries.html) and surround the 
 EditPlayer component. Customize the JSX that ErrorBoundry shows.
