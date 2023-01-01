@@ -1,6 +1,6 @@
 import React from "react";
 import '../style/home.css';
-import {Link, Route} from 'react-router-dom';
+import {Link, Route, Routes} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Game from "../../game/components/Game";
 
@@ -16,9 +16,9 @@ const Home = (props) => {
         </Link>
       </p>
 
-      <Route exact path='/current-game'>
-        <Game/>
-      </Route>
+      <Routes>
+        <Route path='/current-game' element={<Game/>}/>
+      </Routes>
 
     </div>
 
