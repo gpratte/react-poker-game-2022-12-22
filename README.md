@@ -6,6 +6,21 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
+## step 16 set state with function
+Use a function as the argument to a setState just to confirm that the current state is passed 
+as the argument to the function. For example the setLeaguePlayers function takes in the 
+anonymous function and passed the current league players (currentLeaguePlayers) to the 
+anonymous function. Nothing is done
+
+    const leaguePlayers = await playerClient.getPlayers(game.id);
+    // No need to use a function for the setLeaguePlayers but doing it just to show
+    // that the argument is the current state of leaguePlayers.
+    setLeaguePlayers((currentLeaguePlayers) => {
+      // console.log('using a function for the set league players, argument is ' +
+      //   JSON.stringify(currentLeaguePlayers))
+      return leaguePlayers
+    });
+
 ## step 15 upgrade router version 6
 Upgraded the react router from version 5.x to 6.x.
 

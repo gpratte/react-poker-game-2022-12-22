@@ -9,9 +9,9 @@ function Navigation(props) {
     <Navbar expand="lg" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="#home" className="text">
-          <Link to="/home">
+          {/*<Link to="/home">*/}
             <i className="nav-home fa-solid fa-house"></i>
-          </Link>
+          {/*</Link>*/}
         </Navbar.Brand>
         <Navbar.Collapse className="justify-content-end">
           <Nav>

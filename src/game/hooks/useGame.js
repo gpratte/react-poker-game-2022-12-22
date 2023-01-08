@@ -13,6 +13,7 @@ function useGame() {
       try {
         const gameData = await gameClient.getGame(game.id);
         setIsLoading(false);
+        // Change the number of paid players value just to see that things changed
         gameData.numPaidPlayers = Math.random();
         setGame(gameData);
       } catch (error) {
@@ -20,6 +21,7 @@ function useGame() {
       }
     }
     init();
+    // eslint-disable-next-line
   }, [])
 
   const refreshGame = async () => {

@@ -1,9 +1,9 @@
 import {useContext, useEffect, useState} from "react";
-import playerClient from "../../clients/playerClient";
 import seasonClient from "../../clients/seasonClient";
 import {GameContext} from "../components/Game";
 import {AddNotificationContext} from "../../league/components/League";
 import gameClient from "../../clients/gameClient";
+import playerClient from "../../clients/playerClient";
 
 function useAddPlayer() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,9 +16,17 @@ function useAddPlayer() {
 
   useEffect(() => {
     setIsLoading(false);
+
     async function init() {
       try {
-        setLeaguePlayers(await playerClient.getPlayers(game.id));
+        const leaguePlayers = await playerClient.getPlayers(game.id);
+        // No need to use a function for the setLeaguePlayers but doing it just to show
+        // that the argument is the current state of leaguePlayers.
+        setLeaguePlayers((currentLeaguePlayers) => {
+          // console.log('using a function for the set league players, argument is ' +
+          //   JSON.stringify(currentLeaguePlayers))
+          return leaguePlayers
+        });
       } catch (error) {
         newNotification(error);
       }
@@ -29,7 +37,9 @@ function useAddPlayer() {
         newNotification(error);
       }
     }
+
     init();
+    // eslint-disable-next-line
   }, [])
 
   const addGamePlayer = async (e) => {
@@ -45,7 +55,8 @@ function useAddPlayer() {
           id: e.target.elements.playerId.value,
           buyin: e.target.elements.buyInId.checked,
           annualToc: e.target.elements.tocId.checked,
-          qToc: e.target.elements.qtocId.checked});
+          qToc: e.target.elements.qtocId.checked
+        });
       } catch (error) {
         newNotification(error);
       }
