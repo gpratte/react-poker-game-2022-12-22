@@ -2,8 +2,9 @@ import React, {createContext, useState} from "react";
 import Details from "./Details";
 import useGame from "../hooks/useGame";
 import '../../common/style/common.css'
-import {Accordion, Spinner} from "react-bootstrap";
+import {Accordion} from "react-bootstrap";
 import GamePlayers from "./GamePlayers";
+import Loading from "../../common/components/Loading";
 
 export const GameContext = createContext();
 
@@ -18,18 +19,9 @@ function Game() {
   const [detailsAccordionOpen, setDetailsAccordionOpen] = useState(true)
   const [showAddPlayer, setShowAddPlayer] = useState(false);
 
-  if (isLoading) {
-    return (
-      <div>
-        <Spinner animation="border">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </div>
-    )
-  }
-
   return (
     <GameContext.Provider value={{game, refreshGame, showAddPlayer, setShowAddPlayer}}>
+      <Loading isLoading={isLoading}/>
       <div>
         <Accordion defaultActiveKey="0" flush>
           <Accordion.Item eventKey="0">

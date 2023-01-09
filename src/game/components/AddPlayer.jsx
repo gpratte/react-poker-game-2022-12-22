@@ -93,16 +93,6 @@ function AddPlayer() {
     })
   }
 
-  if (isLoading) {
-    return (
-      <div>
-        <Spinner animation="border">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </div>
-    )
-  }
-
   return (
     <div>
       <Modal show={showAddPlayer}
@@ -155,7 +145,16 @@ function AddPlayer() {
               <Button variant="secondary" onClick={() => setShowAddPlayer(false)}>
                 Cancel
               </Button>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" disabled={isLoading} type="submit">
+                {isLoading &&
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                }
                 Add Player
               </Button>
             </Modal.Footer>
