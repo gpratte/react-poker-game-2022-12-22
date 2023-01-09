@@ -1,7 +1,7 @@
 import React from "react";
 
 function Loading(props) {
-  const visible = props.isGlobalLoading ? 'visible' : 'hidden';
+  const visible = props.isLoading ? 'visible' : 'hidden';
   return (
     <div className="loader" style={{visibility: visible}}></div>
   )

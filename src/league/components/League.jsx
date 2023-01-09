@@ -11,7 +11,7 @@ import Notifications from "./Notifications";
 import Footer from "./Footer";
 import Game from "../../game/components/Game";
 import Home from "../../home/components/Home";
-import Loading from "./Loading";
+import Loading from "../../common/components/Loading";
 
 export const NotificationContext = createContext();
 
@@ -33,7 +33,7 @@ function League() {
   return (
     <NotificationContext.Provider value={{newNotification, setIsGlobalLoading}}>
       <div>
-        <Loading isGlobalLoading={isGlobalLoading}/>
+        <Loading isLoading={isGlobalLoading}/>
         <Navigation notifications={notifications} showNotifications={showNotificationsPanel}/>
         <Container className="main-view">
           <Row className="justify-content-center text-center">

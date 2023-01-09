@@ -4,6 +4,7 @@ import useGame from "../hooks/useGame";
 import '../../common/style/common.css'
 import {Accordion} from "react-bootstrap";
 import GamePlayers from "./GamePlayers";
+import Loading from "../../common/components/Loading";
 
 export const GameContext = createContext();
 
@@ -11,7 +12,8 @@ function Game() {
 
   const {
     game,
-    refreshGame
+    refreshGame,
+    isLoading
   } = useGame();
 
   const [detailsAccordionOpen, setDetailsAccordionOpen] = useState(true)
@@ -19,6 +21,7 @@ function Game() {
 
   return (
     <GameContext.Provider value={{game, refreshGame, showAddPlayer, setShowAddPlayer}}>
+      <Loading isLoading={isLoading}/>
       <div>
         <Accordion defaultActiveKey="0" flush>
           <Accordion.Item eventKey="0">
