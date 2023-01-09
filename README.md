@@ -6,6 +6,9 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
+## step 17 loading spinner
+Now have a css spinner that shows in the center. Put this in a new Loading component and using it for the game.
+
 ## step 16 set state with function
 Use a function as the argument to a setState just to confirm that the current state is passed 
 as the argument to the function. For example the setLeaguePlayers function takes in the 
