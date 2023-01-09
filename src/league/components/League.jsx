@@ -11,8 +11,9 @@ import Notifications from "./Notifications";
 import Footer from "./Footer";
 import Game from "../../game/components/Game";
 import Home from "../../home/components/Home";
+import Loading from "./Loading";
 
-export const AddNotificationContext = createContext();
+export const NotificationContext = createContext();
 
 function League() {
   const {
@@ -24,12 +25,15 @@ function League() {
     deleteNotification,
     deleteAllNotifications,
     showNotificationsPanel,
-    hideNotificationsPanel
+    hideNotificationsPanel,
+    isGlobalLoading,
+    setIsGlobalLoading
   } = useNotifications(30000);
 
   return (
-    <AddNotificationContext.Provider value={{newNotification}}>
+    <NotificationContext.Provider value={{newNotification, setIsGlobalLoading}}>
       <div>
+        <Loading isGlobalLoading={isGlobalLoading}/>
         <Navigation notifications={notifications} showNotifications={showNotificationsPanel}/>
         <Container className="main-view">
           <Row className="justify-content-center text-center">
@@ -61,7 +65,7 @@ function League() {
           </Row>
         </Container>
       </div>
-    </AddNotificationContext.Provider>
+    </NotificationContext.Provider>
   )
 }
 

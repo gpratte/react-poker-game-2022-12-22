@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 
 function useNotifications(delay = 2500) {
+  const [isGlobalLoading, setIsGlobalLoading] = useState(false);
   const [notification, setNotification] = useState({});
   const [notifications, setNotifications] = useState([]);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -66,7 +67,9 @@ function useNotifications(delay = 2500) {
     deleteNotification,
     deleteAllNotifications,
     showNotificationsPanel,
-    hideNotificationsPanel
+    hideNotificationsPanel,
+    isGlobalLoading,
+    setIsGlobalLoading
   };
 }
 

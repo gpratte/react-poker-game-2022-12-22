@@ -1,7 +1,7 @@
 import {useContext, useEffect, useState} from "react";
 import seasonClient from "../../clients/seasonClient";
 import {GameContext} from "../components/Game";
-import {AddNotificationContext} from "../../league/components/League";
+import {NotificationContext} from "../../league/components/League";
 import gameClient from "../../clients/gameClient";
 import playerClient from "../../clients/playerClient";
 
@@ -12,11 +12,9 @@ function useAddPlayer() {
   const [activeTabKey, setActiveTabKey] = useState('league-player');
 
   const {game, refreshGame, setShowAddPlayer} = useContext(GameContext);
-  const {newNotification} = useContext(AddNotificationContext);
+  const {newNotification} = useContext(NotificationContext);
 
   useEffect(() => {
-    setIsLoading(false);
-
     async function init() {
       try {
         const leaguePlayers = await playerClient.getPlayers(game.id);
@@ -36,6 +34,7 @@ function useAddPlayer() {
       } catch (error) {
         newNotification(error);
       }
+      setIsLoading(false);
     }
 
     init();

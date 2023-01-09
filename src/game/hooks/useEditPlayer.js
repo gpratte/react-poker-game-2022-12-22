@@ -1,12 +1,12 @@
 import {useContext, useState} from "react";
 import {GameContext} from "../components/Game";
-import {AddNotificationContext} from "../../league/components/League";
+import {NotificationContext} from "../../league/components/League";
 import gameClient from "../../clients/gameClient";
 
 function useEditPlayer(gamePlayer) {
 
   const {game, refreshGame} = useContext(GameContext);
-  const {newNotification} = useContext(AddNotificationContext);
+  const {newNotification} = useContext(NotificationContext);
 
   const [accordionOpen, setAccordionOpen] = useState(false);
   const [accordionBodyKey, setAccordionBodyKey] = useState(Math.random());
