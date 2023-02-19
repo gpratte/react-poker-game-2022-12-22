@@ -6,6 +6,9 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
+## step 18 bookkeeping
+Added a this-and-that directory for bookkeeping files.
+
 ## step 17 loading spinner
 Now have a css spinner that shows in the center. Put this in a new Loading component and using it for the game.
 
