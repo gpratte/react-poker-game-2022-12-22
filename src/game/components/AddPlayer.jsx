@@ -6,6 +6,7 @@ import useAddPlayer from "../hooks/useAddPlayer";
 
 function AddPlayer() {
 
+  // TODO the showAddPlayer is being passed as props so remove from the context
   const {game, showAddPlayer, setShowAddPlayer} = useContext(GameContext);
   const {
     addGamePlayer,
