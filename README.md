@@ -7,7 +7,8 @@ Running _npx create-react-app --version_ spit out 5.0.1.
 _create-react-app_ installed react version 18 (as you can see by the react version in the package.json).
 
 ## step 19 typescript
-The continuation of the application starting at step 19 can be found
+The continuation of the application starting at step 19 can be found 
+at https://github.com/gpratte/react-poker-game-2023-09-15
 
 ## step 18 bookkeeping
 Added a this-and-that directory for bookkeeping files.
